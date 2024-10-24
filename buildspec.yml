@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8  # Specify the Python version
+    commands:
+      - echo Installing dependencies...
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+
+  pre_build:
+    commands:
+      - echo Running pre-build steps...
+      # Add any pre-build steps here, like linting
+      - python -m flake8  # For linting with flake8, optional
+      - echo Pre-build steps completed.
+
+  build:
+    commands:
+      - echo Building the application...
+      - python -m unittest discover  # Run tests
+      - echo Build completed successfully.
+
+  post_build:
+    commands:
+      - echo Running post-build steps...
+      # Optional deployment or
